@@ -1,6 +1,7 @@
 .app {
   display: flex;
   justify-content: center;
+  align-content: center;
 }
 
 .grid--centered {
@@ -9,11 +10,32 @@
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, max-content);
   grid-gap: 10px;
+}
+
+
+@media only screen and (min-width: 525px) {
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, max-content);
+    grid-gap: 10px;
+  }
+}
+
+@media only screen and (min-width: 750px) {
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, max-content);
+    grid-gap: 10px;
+  }
 }
 
 .profiles {
   display: inline-block;
   text-align: center;
+}
+
+.profiles .profile-card {
+  margin-left: auto;
+  margin-right: auto;
 }
