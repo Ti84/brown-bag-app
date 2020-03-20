@@ -1,0 +1,19 @@
+.app {
+  display: flex;
+  justify-content: center;
+}
+
+.grid--centered {
+  margin: auto;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, max-content);
+  grid-gap: 10px;
+}
+
+.profiles {
+  display: inline-block;
+  text-align: center;
+}

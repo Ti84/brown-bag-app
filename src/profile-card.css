@@ -5,7 +5,7 @@
   flex-direction: column;
   align-items: center;
   border-radius: 15px;
-  background-color: #092327;
+  background-color: #00b2ca;
 }
 
 .profile-card__img {
@@ -14,12 +14,13 @@
 }
 
 .profile-card__title {
-  color: #00B2CA;
+  color: #0b5351;
+  margin: 10px 0 5px 0;
 }
-
 
 .profile-card__links {
   list-style: none;
+  padding: 0;
 }
 
 .profile-card__links > li {
@@ -27,6 +28,7 @@
   margin-right: 10px;
 }
 
-.profile-card__links > li > a {
-  color: #F79256;
+.profile-card__links li a img {
+  width: 25px;
+  color: #f79256;
 }
