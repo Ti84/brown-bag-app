@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/brown-bag-app/static/css/main.2d258b76.chunk.css",
+    "main.js": "/brown-bag-app/static/js/main.6e5ee92e.chunk.js",
+    "main.js.map": "/brown-bag-app/static/js/main.6e5ee92e.chunk.js.map",
+    "runtime-main.js": "/brown-bag-app/static/js/runtime-main.01e618cc.js",
+    "runtime-main.js.map": "/brown-bag-app/static/js/runtime-main.01e618cc.js.map",
+    "static/js/2.fcde08c6.chunk.js": "/brown-bag-app/static/js/2.fcde08c6.chunk.js",
+    "static/js/2.fcde08c6.chunk.js.map": "/brown-bag-app/static/js/2.fcde08c6.chunk.js.map",
+    "index.html": "/brown-bag-app/index.html",
+    "precache-manifest.1e215818957577e1a3b56bc91b4d6111.js": "/brown-bag-app/precache-manifest.1e215818957577e1a3b56bc91b4d6111.js",
+    "service-worker.js": "/brown-bag-app/service-worker.js",
+    "static/css/main.2d258b76.chunk.css.map": "/brown-bag-app/static/css/main.2d258b76.chunk.css.map",
+    "static/js/2.fcde08c6.chunk.js.LICENSE.txt": "/brown-bag-app/static/js/2.fcde08c6.chunk.js.LICENSE.txt",
+    "static/media/codepen.svg": "/brown-bag-app/static/media/codepen.14be1369.svg",
+    "static/media/github.svg": "/brown-bag-app/static/media/github.617870e4.svg",
+    "static/media/twitter.svg": "/brown-bag-app/static/media/twitter.be066898.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.01e618cc.js",
+    "static/js/2.fcde08c6.chunk.js",
+    "static/css/main.2d258b76.chunk.css",
+    "static/js/main.6e5ee92e.chunk.js"
+  ]
+}
