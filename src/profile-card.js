@@ -13,15 +13,15 @@ const ProfileCard = ({ profileImg, name, twitter, github, codepen }) => {
       <img className="profile-card__img" src={profileImg} alt={`${name}`}/>
       <h1 className="profile-card__title">{name}</h1>
       <ul className="profile-card__links">
-        <li>
+        { twitter && <li>
           <a href={twitter} rel="noopener noreferrer" target="_blank">Twitter</a>
-        </li>
-        <li>
-        <a href={github} rel="noopener noreferrer" target="_blank">Github</a>
-        </li>
-        <li>
+        </li> }
+        { github && <li>
+          <a href={github} rel="noopener noreferrer" target="_blank">Github</a>
+        </li> }
+        { codepen && <li>
           <a href={codepen} rel="noopener noreferrer" target="_blank">Codepen</a>
-        </li>
+        </li> }
       </ul>
     </section>
   );
