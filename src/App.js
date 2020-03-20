@@ -5,6 +5,11 @@ import './App.css';
 
 import PEOPLE from './data/people';
 
+// To Add:
+// State example to main app.
+// Sorting / Filters?
+// Following option for each profile card
+// Make flow chart to show data / rerender flow
 const App = () => {
   return (
     <div className="app">
