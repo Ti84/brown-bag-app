@@ -11,12 +11,14 @@ import PEOPLE from './data/people';
 // 2. Create startup app with css / etc so you only have to live code the react parts
 // 3. Code profile card first in app component
 // 4. Move profile card to its own component and show how it could become reusable
-// 5. Create a dark / light mode toggle component to display how you manage state / pass functions to child
-      // Demonstrate useState, etc.
+// 5. Create a sort / filter form - Filter by name, filter by dev type
+// 6. Container component for list of profiles / filter form
 
-// If you don't do it in the app, make sure to explain useEffect and explain how you can create your own custom hooks.
+// Setup fake api call to show example useEffect hook - explain useEffect (First param: function body happens on init / each rerender if the specified item changed, return a function to run a function after the component is unmounted, second param: specify what valuess to watch on rerender.)
 
-// REMEMBER YOU ONLY HAVE AN HOUR BRO
+// You only have an hour, setup a bit of the app ahead of time. (
+
+// For props.children explain how it is just the default param for jsx inside of the component tags but you can pass jsx and render it in the child component like you could for any javascript value.
 
 const App = () => {
   return (
