@@ -1,10 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ProfileCard from './profile-card';
 
 import './App.css';
 
 import PEOPLE from './data/people';
-
 
 // To Do:
 // 1. Create script for live coding demo
@@ -16,31 +15,52 @@ import PEOPLE from './data/people';
 
 // Setup fake api call to show example useEffect hook - explain useEffect (First param: function body happens on init / each rerender if the specified item changed, return a function to run a function after the component is unmounted, second param: specify what valuess to watch on rerender.)
 
-// You only have an hour, setup a bit of the app ahead of time. (
+// You only have an hour, setup a bit of the app ahead of time.
 
 // For props.children explain how it is just the default param for jsx inside of the component tags but you can pass jsx and render it in the child component like you could for any javascript value.
 
 const App = () => {
+  let [searchValue, setSearchValue] = useState('');
+  let [profileData] = useState(PEOPLE);
+  let [filteredProfileData, setFilteredProfileData] = useState(profileData);
+
+  const updateSearchValue = e => {
+    setSearchValue(e.target.value);
+    setFilteredProfileData(
+      profileData.filter(profile =>
+        profile.name.toLowerCase().startsWith(e.target.value.toLowerCase())
+      )
+    );
+  };
+
   return (
     <div className="app">
-      {/* Turn this into a component and pass this as props.children */}
-      <section className="profiles">
+      <section className="search">
         <h1>Awesome Developers to follow</h1>
-        <div className="grid grid--centered">
-          {PEOPLE &&
-            PEOPLE.map(
+        <input
+          type="text"
+          onChange={e => updateSearchValue(e)}
+          value={searchValue}
+          placeholder="Dev's Name"
+        />
+      </section>
+      <section className="profiles">
+        <ul className="grid-list grid-list--centered">
+          {filteredProfileData &&
+            filteredProfileData.map(
               ({ name, picture: profileImg, twitter, github, codepen }) => (
-                <ProfileCard
-                  key={name}
-                  profileImg={profileImg}
-                  name={name}
-                  twitter={twitter}
-                  github={github}
-                  codepen={codepen}
-                ></ProfileCard>
+                <li key={name}>
+                  <ProfileCard
+                    profileImg={profileImg}
+                    name={name}
+                    twitter={twitter}
+                    github={github}
+                    codepen={codepen}
+                  ></ProfileCard>
+                </li>
               )
             )}
-        </div>
+        </ul>
       </section>
     </div>
   );

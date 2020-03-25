@@ -1,21 +1,25 @@
 .app {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-content: center;
 }
 
-.grid--centered {
+.grid-list--centered {
   margin: auto;
 }
 
-.grid {
+.grid-list {
   display: grid;
   grid-gap: 10px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 
 @media only screen and (min-width: 525px) {
-  .grid {
+  .grid-list {
     display: grid;
     grid-template-columns: repeat(2, max-content);
     grid-gap: 10px;
@@ -23,7 +27,7 @@
 }
 
 @media only screen and (min-width: 750px) {
-  .grid {
+  .grid-list {
     display: grid;
     grid-template-columns: repeat(3, max-content);
     grid-gap: 10px;
@@ -31,8 +35,14 @@
 }
 
 .profiles {
-  display: inline-block;
+  margin-left:auto;
+  margin-right: auto;
   text-align: center;
+}
+
+.search {
+  margin-left:auto;
+  margin-right: auto;
 }
 
 .profiles .profile-card {
