@@ -4,7 +4,6 @@ import ProfileCard from './profile-card';
 import './App.css';
 
 import PEOPLE from './data/people';
-import useFilter from './hooks/useFilter';
 
 // To Do:
 // 1. Create script for live coding demo
@@ -21,22 +20,48 @@ import useFilter from './hooks/useFilter';
 
 // For props.children explain how it is just the default param for jsx inside of the component tags but you can pass jsx and render it in the child component like you could for any javascript value.
 
+// Make this car cards instead of developers.
+
 const App = () => {
-  let [searchValue, setSearchValue] = useState('');
-  let [loading, setLoading] = useState(true);
-  let [filteredData, setDataToFilter, filterData] =  useFilter(null);
+  const [searchValue, setSearchValue] = useState('');
+  const [loading, setLoading] = useState(true);
+  let [profileData, setProfileData] = useState(null);
 
   const updateSearchValue = e => {
     setSearchValue(e.target.value);
-    filterData(e.target.value);
   };
 
   useEffect(() => {
     setTimeout(() => {
-      setDataToFilter(PEOPLE);
+      setProfileData(PEOPLE);
       setLoading(false);
     }, 1500);
-  }, [setDataToFilter]); 
+  }, []);
+
+  // Same as if (profileData) block.
+  const createProfiles = () => {
+    if (profileData) {
+      const filteredData =
+        profileData &&
+        profileData.filter(profile =>
+          profile.name.toLowerCase().startsWith(searchValue.toLowerCase())
+        );
+
+      return filteredData.map(
+        ({ name, picture: profileImg, twitter, github, codepen }) => (
+          <li key={name}>
+            <ProfileCard
+              profileImg={profileImg}
+              name={name}
+              twitter={twitter}
+              github={github}
+              codepen={codepen}
+            ></ProfileCard>
+          </li>
+        )
+      );
+    }
+  };
 
   return (
     <div className="app">
@@ -59,20 +84,7 @@ const App = () => {
           </section>
           <section className="profiles">
             <ul className="grid-list grid-list--centered">
-              {filteredData &&
-                filteredData.map(
-                  ({ name, picture: profileImg, twitter, github, codepen }) => (
-                    <li key={name}>
-                      <ProfileCard
-                        profileImg={profileImg}
-                        name={name}
-                        twitter={twitter}
-                        github={github}
-                        codepen={codepen}
-                      ></ProfileCard>
-                    </li>
-                  )
-                )}
+              {createProfiles()}
             </ul>
           </section>
         </Fragment>
