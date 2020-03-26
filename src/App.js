@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import ProfileCard from './profile-card';
 
 import './App.css';
 
 import PEOPLE from './data/people';
+import useFilter from './hooks/useFilter';
 
 // To Do:
 // 1. Create script for live coding demo
@@ -12,6 +13,7 @@ import PEOPLE from './data/people';
 // 4. Move profile card to its own component and show how it could become reusable
 // 5. Create a sort / filter form - Filter by name, filter by dev type
 // 6. Container component for list of profiles / filter form
+// 7. Create example card component ahead of time to show how you pass templates to child components.
 
 // Setup fake api call to show example useEffect hook - explain useEffect (First param: function body happens on init / each rerender if the specified item changed, return a function to run a function after the component is unmounted, second param: specify what valuess to watch on rerender.)
 
@@ -21,47 +23,60 @@ import PEOPLE from './data/people';
 
 const App = () => {
   let [searchValue, setSearchValue] = useState('');
-  let [profileData] = useState(PEOPLE);
-  let [filteredProfileData, setFilteredProfileData] = useState(profileData);
+  let [loading, setLoading] = useState(true);
+  let [filteredData, setDataToFilter, filterData] =  useFilter(null);
 
   const updateSearchValue = e => {
     setSearchValue(e.target.value);
-    setFilteredProfileData(
-      profileData.filter(profile =>
-        profile.name.toLowerCase().startsWith(e.target.value.toLowerCase())
-      )
-    );
+    filterData(e.target.value);
   };
+
+  useEffect(() => {
+    setTimeout(() => {
+      setDataToFilter(PEOPLE);
+      setLoading(false);
+    }, 1500);
+  }, [setDataToFilter]); 
 
   return (
     <div className="app">
-      <section className="search">
-        <h1>Awesome Developers to follow</h1>
-        <input
-          type="text"
-          onChange={e => updateSearchValue(e)}
-          value={searchValue}
-          placeholder="Dev's Name"
-        />
-      </section>
-      <section className="profiles">
-        <ul className="grid-list grid-list--centered">
-          {filteredProfileData &&
-            filteredProfileData.map(
-              ({ name, picture: profileImg, twitter, github, codepen }) => (
-                <li key={name}>
-                  <ProfileCard
-                    profileImg={profileImg}
-                    name={name}
-                    twitter={twitter}
-                    github={github}
-                    codepen={codepen}
-                  ></ProfileCard>
-                </li>
-              )
-            )}
-        </ul>
-      </section>
+      {loading && (
+        <div>
+          <h1>Loading...</h1>
+        </div>
+      )}
+      {!loading && (
+        <Fragment>
+          <h1 className="title">Awesome Developers to follow</h1>
+          <section className="search">
+            {/* Pop this in its own component to show how to pass functions down as props */}
+            <input
+              type="text"
+              onChange={e => updateSearchValue(e)}
+              value={searchValue}
+              placeholder="Dev's Name"
+            />
+          </section>
+          <section className="profiles">
+            <ul className="grid-list grid-list--centered">
+              {filteredData &&
+                filteredData.map(
+                  ({ name, picture: profileImg, twitter, github, codepen }) => (
+                    <li key={name}>
+                      <ProfileCard
+                        profileImg={profileImg}
+                        name={name}
+                        twitter={twitter}
+                        github={github}
+                        codepen={codepen}
+                      ></ProfileCard>
+                    </li>
+                  )
+                )}
+            </ul>
+          </section>
+        </Fragment>
+      )}
     </div>
   );
 };
